@@ -1,0 +1,15 @@
+Android 通用圆角布局，快速实现圆角需求
+    依赖-----> RCRelativeLayout ---->attrs{
+                                     -----> RCRelativeLayout
+                                        }
+      配置属性
+     可以在布局文件中配置的属性如下：
+     属性名称	                   摘要	     是否必须设置	类型
+     round_corner	            总体圆角半径	否	        dp
+     round_corner_top_left  	左上角圆角半径	否	        dp
+     round_corner_top_right 	右上角圆角半径	否	        dp
+     round_corner_bottom_left	左下角圆角半径	否	        dp
+     round_corner_bottom_right	右下角圆角半径	否	        dp
+     round_as_circle	        是否剪裁为圆形	否	        boolean
+     stroke_width	            描边半径	    否	        dp
+     stroke_color	            描边颜色	    否	        color
