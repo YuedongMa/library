@@ -1,5 +1,5 @@
 Android 通用圆角布局，快速实现圆角需求
-    依赖-----> RCRelativeLayout ---->attrs{
+    依赖-----> W_RCRelativeLayout ---->attrs{
                                      -----> RCRelativeLayout
                                         }
       配置属性
