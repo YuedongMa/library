@@ -31,7 +31,6 @@
                 <category android:name="android.intent.category.BROWSABLE"/>
             </intent-filter>
         </activity>
-        <activity android:name="com.example.yuedong.library.views.home.activitys.JumpResultActivity"></activity>
     </application>
 
 </manifest>

@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.Button;
-
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.TimePickerView;
 import com.example.yuedong.library.R;
@@ -85,7 +83,6 @@ public class TwoFragment extends BaseFragment_ {
         btclTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ARouter.getInstance().build("/test/jump").withBoolean("key", true).navigation();
             }
         });
     }
