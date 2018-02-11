@@ -2,9 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/transparent"
     android:orientation="vertical">
 
+    <com.vondear.rxtools.view.RxTitle
+        android:id="@+id/rx_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/system_bg"
+        android:clipToPadding="true"
+       app:leftIconVisibility="false"
+        android:fitsSystemWindows="true"
+        app:title="测试"/>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

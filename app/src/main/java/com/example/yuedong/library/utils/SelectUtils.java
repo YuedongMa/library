@@ -4,12 +4,15 @@ import android.graphics.Color;
 
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.TimePickerView;
+import com.example.yuedong.library.R;
 
 /**
  * Created by mayuedong on 2017/10/25.
  */
 
 public class SelectUtils {
+
+    private static int bg = Color.parseColor("#52BA97");
 
     /**
      * 类型选择器
@@ -26,7 +29,7 @@ public class SelectUtils {
                 .setTitleColor(Color.parseColor("#ffffff"))//标题文字颜色
                 .setSubmitColor(Color.parseColor("#ffffff"))//确定按钮文字颜色
                 .setCancelColor(Color.parseColor("#ffffff"))//取消按钮文字颜色
-                .setTitleBgColor(Color.parseColor("#0082d7"))//标题背景颜色 Night mode
+                .setTitleBgColor(bg)//标题背景颜色 Night mode
                 .setBgColor(Color.TRANSPARENT)//滚轮背景颜色 Night mode
                 .setContentTextSize(18)//滚轮文字大小
                 .setLinkage(false)//设置是否联动，默认true
@@ -38,6 +41,7 @@ public class SelectUtils {
 
     /**
      * 城市选择
+     *
      * @param builder
      * @param tilte
      * @return
@@ -51,7 +55,7 @@ public class SelectUtils {
                 .setTitleColor(Color.parseColor("#ffffff"))//标题文字颜色
                 .setSubmitColor(Color.parseColor("#ffffff"))//确定按钮文字颜色
                 .setCancelColor(Color.parseColor("#ffffff"))//取消按钮文字颜色
-                .setTitleBgColor(Color.parseColor("#0082d7"))//标题背景颜色 Night mode
+                .setTitleBgColor(bg)//标题背景颜色 Night mode
                 .setBgColor(Color.TRANSPARENT)//滚轮背景颜色 Night mode
                 .setContentTextSize(18)//滚轮文字大小
                 .setLinkage(true)//设置是否联动，默认true
@@ -63,6 +67,7 @@ public class SelectUtils {
 
     /**
      * 时间选择
+     *
      * @param builder
      * @param tilte
      * @return
@@ -78,8 +83,8 @@ public class SelectUtils {
                 .isCyclic(true)//是否循环滚动
                 .setTitleColor(Color.parseColor("#ffffff"))//标题文字颜色
                 .setSubmitColor(Color.parseColor("#ffffff"))//确定按钮文字颜色
-                .setCancelColor(Color.parseColor("#ffffff"))//取消按钮文字颜色
-                .setTitleBgColor(Color.parseColor("#0082d7"))//标题背景颜色 Night mode
+                .setCancelColor(Color.parseColor("#ffffff"))//取消按钮色
+                .setTitleBgColor(bg)//标题背景颜色 Night mode
                 .setBgColor(Color.TRANSPARENT)//滚轮背景颜色 Night mode
 //                .setDate(selectedDate)// 如果不设置的话，默认是系统时间*/
 //                .setRangDate(startDate,endDate)//起始终止年月日设定

@@ -1,4 +1,5 @@
 package com.example.yuedong.library.views.home;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,18 +11,24 @@ import com.example.yuedong.library.views.home.fragments.ThreeFragment;
 import com.example.yuedong.library.views.home.fragments.TwoFragment;
 import com.example.yuedong.library.widget.bottombar.W_BottomBar;
 import com.example.yuedong.library.widget.bottombar.W_BottomBarTab;
+import com.vondear.rxtools.RxBarTool;
+import com.vondear.rxtools.view.RxTitle;
+
+import butterknife.BindView;
+
 public class MainActivity extends BaseActivity_ {
     private Fragment[] mFragments = new Fragment[3];
     private W_BottomBar mBottomBar;
     private FragmentManager fManager;
-
+    @BindView(R.id.rx_title)
+    RxTitle mRxTitle;
     @Override
     public int initLayout(Bundle savedInstanceState) {
+
         return R.layout.activity_main;
     }
     @Override
     public void initData() {
-
 //        toCheckPermission(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, this, new QuestPermissionListener() {
 //            @Override
 //            public void onPermissionAccept() {
