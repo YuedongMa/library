@@ -8,6 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.yuedong.library.base.basepresenter.BasePresenter;
+import com.example.yuedong.library.base.basepresenter.BaseView;
+import com.example.yuedong.library.utils.UtilManager;
+import com.vondear.rxtools.SLoadingTool;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -20,11 +25,13 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
     private View mView;
     protected T mPresenter;
     private Context mContext;
+    protected UtilManager $;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(initLayout(savedInstanceState), null);
+        if($==null)$=UtilManager.getInstance(getActivity());
         initPresenter();
         return mView;
     }
@@ -37,7 +44,7 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
         }
         unbinder = ButterKnife.bind(this, view);
         initData();
-        onEvent();
+        //onEvent();
     }
 
     @Override
@@ -52,7 +59,7 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
 
     protected abstract void initPresenter();
 
-    protected abstract void onEvent();
+  //  protected abstract void onEvent();
 
     protected abstract void clearDisposable();
 
@@ -66,11 +73,11 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
 
     @Override
     public void showLoading() {
-
+        SLoadingTool.instance(getActivity()).show();
     }
 
     @Override
     public void disLoading() {
-
+        SLoadingTool.instance(getActivity()).close();
     }
 }

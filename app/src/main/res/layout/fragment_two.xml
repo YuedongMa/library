@@ -27,7 +27,7 @@
         android:id="@+id/btclTest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="圆角测试" />
+        android:text="增量更新" />
 
 
 

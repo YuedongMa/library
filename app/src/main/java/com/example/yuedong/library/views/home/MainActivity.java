@@ -1,18 +1,22 @@
 package com.example.yuedong.library.views.home;
+import android.Manifest;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.widget.Toast;
+
 import com.example.yuedong.library.R;
 import com.example.yuedong.library.base.BaseActivity_;
+import com.example.yuedong.library.listener.QuestPermissionListener;
 import com.example.yuedong.library.views.home.fragments.OneFragment;
 import com.example.yuedong.library.views.home.fragments.ThreeFragment;
 import com.example.yuedong.library.views.home.fragments.TwoFragment;
 import com.example.yuedong.library.widget.bottombar.W_BottomBar;
 import com.example.yuedong.library.widget.bottombar.W_BottomBarTab;
-import com.vondear.rxtools.RxBarTool;
 import com.vondear.rxtools.view.RxTitle;
+
 
 import butterknife.BindView;
 
@@ -29,17 +33,18 @@ public class MainActivity extends BaseActivity_ {
     }
     @Override
     public void initData() {
-//        toCheckPermission(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, this, new QuestPermissionListener() {
-//            @Override
-//            public void onPermissionAccept() {
-//              //  Toast.makeText(MainActivity.this, "ok", Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onPermissionRefuse() {
-//             //   Toast.makeText(MainActivity.this, "ref", Toast.LENGTH_SHORT).show();
-//            }
-//        });
+
+        toCheckPermission(new String[]{Manifest.permission.READ_PHONE_STATE,Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE}, this, new QuestPermissionListener() {
+            @Override
+            public void onPermissionAccept() {
+                Toast.makeText(MainActivity.this, "ok", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onPermissionRefuse() {
+                Toast.makeText(MainActivity.this, "ref", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         mBottomBar = (W_BottomBar) findViewById(R.id.bottomBar);
         fManager = getSupportFragmentManager();

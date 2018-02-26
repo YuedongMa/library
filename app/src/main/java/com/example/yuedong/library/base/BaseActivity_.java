@@ -14,7 +14,10 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import com.example.yuedong.library.base.basepresenter.BaseView;
 import com.example.yuedong.library.listener.QuestPermissionListener;
+import com.example.yuedong.library.utils.UtilManager;
+import com.vondear.rxtools.SLoadingTool;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,15 +32,17 @@ import butterknife.Unbinder;
 public abstract class BaseActivity_ extends AppCompatActivity implements BaseView {
     protected static QuestPermissionListener listener;
     protected Unbinder unbinder;
-
+    protected UtilManager $;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(initLayout(savedInstanceState));
         unbinder = ButterKnife.bind(this);
+        if ($ == null) $ = UtilManager.getInstance(this);
         initData();
         onEvent();
+
     }
 
 
@@ -124,17 +129,18 @@ public abstract class BaseActivity_ extends AppCompatActivity implements BaseVie
 
     @Override
     public void showLoading() {
-
+        SLoadingTool.instance(this).show();
     }
 
     @Override
     public void disLoading() {
-
+        SLoadingTool.instance(this).close();
     }
 
     public void showShort(String msg) {
         Toast.makeText(getBaseContext(), msg, Toast.LENGTH_SHORT).show();
     }
+
     /**
      * 隐藏软键盘
      */

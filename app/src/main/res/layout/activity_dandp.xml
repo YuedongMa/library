@@ -1,0 +1,112 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/ll"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#EEEEEE"
+    android:orientation="vertical">
+
+    <com.vondear.rxtools.view.RxTitle
+        android:id="@+id/rx_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/system_bg"
+        android:clipToPadding="true"
+        app:clickColor="#bcbcbc"
+        app:leftIconVisibility="true"
+        android:fitsSystemWindows="true"
+        app:title="增量更新测试"/>
+
+
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/bt"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:paddingBottom="0dp"
+                android:paddingLeft="5dp"
+                android:layout_marginTop="40dp"
+                android:layout_gravity="center"
+                android:paddingRight="5dp"
+                android:gravity="center"
+                android:paddingTop="0dp"
+                android:text="当前版本2.0" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#f0f"
+                android:padding="5dp"
+                android:text="把新包放到手机跟目录，命名为new.apk即可"/>
+
+            <Button
+                android:id="@+id/btn_start"
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:onClick="bsdiff"
+                android:paddingBottom="0dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="0dp"
+                android:text="生成增量更新包" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#f0f"
+                android:padding="5dp"
+                android:text="生产中app端将下载的patch文件与老包合成新包并进行安装"/>
+
+            <Button
+                android:id="@+id/btn_end"
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:onClick="bspatch"
+                android:paddingBottom="0dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="0dp"
+                android:text="合成新的安装包APK" />
+
+            <Button
+                android:id="@+id/btn_install"
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:onClick="installNew"
+                android:paddingBottom="0dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="0dp"
+                android:text="安装新版本APK" />
+
+            <Button
+                android:id="@+id/app_list"
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:onClick="appList"
+                android:paddingBottom="10dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="10dp"
+                android:visibility="gone"
+                android:text="获取某个应用的APK安装文件" />
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/loadding"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:visibility="gone"/>
+
+
+
+
+</RelativeLayout>

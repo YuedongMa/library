@@ -9,8 +9,7 @@ import android.widget.Button;
 import com.example.yuedong.library.R;
 import com.example.yuedong.library.base.BaseFragment_;
 import com.example.yuedong.library.utils.PaperUtils;
-import com.vondear.rxtools.view.RxToast;
-import com.vondear.rxtools.view.dialog.RxDialogScaleView;
+
 
 import butterknife.BindView;
 
@@ -44,9 +43,9 @@ public class ThreeFragment extends BaseFragment_ {
         btclick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RxDialogScaleView rxDialogScaleView = new RxDialogScaleView(getActivity());
-                rxDialogScaleView.setImageRes(R.mipmap.ic_launcher);
-                rxDialogScaleView.show();
+//                RxDialogScaleView rxDialogScaleView = new RxDialogScaleView(getActivity());
+//                rxDialogScaleView.setImageRes(R.mipmap.ic_launcher);
+//                rxDialogScaleView.show();
 
             }
         });

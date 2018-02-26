@@ -1,10 +1,11 @@
 package com.example.yuedong.library.api;
 
-import org.json.JSONObject;
+import com.example.yuedong.library.base.basepresenter.BaseResponse;
+import com.example.yuedong.library.models.base.BaseModel;
+import com.example.yuedong.library.models.request.RequestJson;
+import com.example.yuedong.library.models.UpdVersionModule;
 
-import java.util.HashMap;
-
-import retrofit2.Call;
+import io.reactivex.Observable;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 import retrofit2.http.Url;
@@ -16,6 +17,6 @@ import retrofit2.http.Url;
 public interface HomeApi {
 
     @POST
-    Call<JSONObject> getOrderNum(@Url String url, @Body HashMap map);
+    Observable<BaseResponse<BaseModel<UpdVersionModule>>> updVersion(@Url String url, @Body RequestJson requestJson);
 
 }

@@ -17,16 +17,19 @@ android {
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         debug {
+            buildConfigField "String", "BASE_HOST", "\"http://118.190.162.163\""
             buildConfigField "String","BASE_URL","\"http://\""
-            applicationIdSuffix ".develop"
+           // applicationIdSuffix ".develop"
             resValue "string", "app_name", "测试"
             minifyEnabled false
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         release {
+            buildConfigField "String", "BASE_HOST", "\"http://118.190.162.163\""
             buildConfigField "String","BASE_URL","\"http://\""
             applicationIdSuffix ".release"
             resValue "string", "app_name", "生产"
@@ -34,14 +37,20 @@ android {
             shrinkResources false//去除无用资源
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
     }
 }
-
+repositories {
+    flatDir{
+        dirs 'libs'
+    }
+}
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    compile(name:'tool',ext:'aar')
     compile'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:appcompat-v7:26.0.2'
     compile 'com.android.support:support-v4:26.0.2'
@@ -58,10 +67,11 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.5.0'
-    //============
-    compile 'com.github.vondear:RxTools:v1.7.6.4'
     //====
     compile 'com.android.support:multidex:1.0.1'
+    //===
+    compile 'com.github.ha-excited:BigNews:0.1.2'
+
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.2.0'
 

@@ -14,7 +14,11 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import com.example.yuedong.library.base.basepresenter.BasePresenter;
+import com.example.yuedong.library.base.basepresenter.BaseView;
 import com.example.yuedong.library.listener.QuestPermissionListener;
+import com.vondear.rxtools.SLoadingTool;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -135,17 +139,18 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
 
     @Override
     public void showLoading() {
-
+        SLoadingTool.instance(this).show();
     }
 
     @Override
     public void disLoading() {
-
+        SLoadingTool.instance(this).close();
     }
 
     public void showShort(String msg) {
         Toast.makeText(getBaseContext(), msg, Toast.LENGTH_SHORT).show();
     }
+
     /**
      * 隐藏软键盘
      */

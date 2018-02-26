@@ -1,4 +1,4 @@
-package com.example.yuedong.library.base;
+package com.example.yuedong.library.base.basepresenter;
 
 /**
  * Created by mayuedong on 2017/11/1.
