@@ -2,8 +2,8 @@ package com.example.yuedong.library.exception;
 
 import com.example.yuedong.library.MainApplication;
 import com.example.yuedong.library.utils.NetworkUtil;
-import com.example.yuedong.library.utils.ToastUtil;
 import com.google.gson.JsonParseException;
+import com.vondear.rxtools.view.RxToast;
 
 import org.json.JSONException;
 
@@ -68,7 +68,7 @@ public class JDExceptionManager {
             jdException.setErrorMsg("未知错误");
         }
         if (!isUnknown){
-            ToastUtil.showShort(MainApplication.getContext(), jdException.getErrorMsg());
+            RxToast.normal(MainApplication.getContext(), jdException.getErrorMsg()).show();
         }
         return jdException;
     }

@@ -1,27 +1,20 @@
 package com.example.yuedong.library.views.home.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-
-import com.bigkoo.pickerview.TimePickerView;
 import com.example.yuedong.library.R;
 import com.example.yuedong.library.base.BaseFragment;
 import com.example.yuedong.library.models.UpdVersionModule;
 import com.example.yuedong.library.presenter.UpdatePresenter;
 import com.example.yuedong.library.presenter.contract.UpdateContract;
-import com.example.yuedong.library.utils.SelectUtils;
-import com.example.yuedong.library.utils.ToastUtil;
+import com.example.yuedong.library.views.home.DAndPActivity;
 
 import java.util.Date;
-
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -71,7 +64,7 @@ public class TwoFragment extends BaseFragment<UpdatePresenter> implements Update
     @Override
     public void updVersionFail(String errorMsg, boolean isTokenEP) {
         disLoading();
-        ToastUtil.showLong(getActivity(), errorMsg);
+       $.showToast(errorMsg);
     }
 
     @Override
@@ -94,8 +87,9 @@ public class TwoFragment extends BaseFragment<UpdatePresenter> implements Update
                 mPresenter.onTimeSeleced(getActivity());
                 break;
             case R.id.btclTest:
-                showLoading();
-                mPresenter.updVersion();
+                startActivity(new Intent(getActivity(), DAndPActivity.class));
+               // showLoading();
+             //   mPresenter.updVersion();
                 break;
         }
     }

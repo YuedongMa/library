@@ -2,7 +2,6 @@ package com.example.yuedong.library.models.request;
 
 import android.support.annotation.Keep;
 
-import com.example.yuedong.library.presenter.interactor.BaseManager;
 import com.example.yuedong.library.presenter.interactor.remote.BaseRemoteInteractorCallBack;
 
 /**

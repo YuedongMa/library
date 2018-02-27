@@ -10,8 +10,7 @@ import com.example.yuedong.library.models.UpdVersionModule;
 import com.example.yuedong.library.models.base.BaseModel;
 import com.example.yuedong.library.models.body.UpdVersionBody;
 import com.example.yuedong.library.models.request.RequestJson;
-import com.example.yuedong.library.presenter.interactor.BaseManager;
-import com.example.yuedong.library.utils.DeviceUtil;
+import com.vondear.rxtools.SDeviceTool;
 
 import io.reactivex.disposables.Disposable;
 
@@ -33,8 +32,8 @@ public class PresenterRemoteInteractorImpl extends BaseRemoteInteractorCallBack 
         requestJson.setVersion("4.0");
         UpdVersionBody versionBody = new UpdVersionBody();
         versionBody.setAppName("4");
-        versionBody.setVersion(DeviceUtil.getAppVersionName(MainApplication.getContext()) + "");
-        versionBody.setMachineId(DeviceUtil.getSingleIMEI(MainApplication.getContext()));
+        versionBody.setVersion(SDeviceTool.getAppVersionName(MainApplication.getContext()));
+        versionBody.setMachineId(SDeviceTool.getIMEI(MainApplication.getContext()));
         versionBody.setPhoneType(2);
         requestJson.setDataBody(versionBody);
         homeApi.updVersion("http://118.190.162.163/bdbgapi/bdbCommonGateway/api/", requestJson)
