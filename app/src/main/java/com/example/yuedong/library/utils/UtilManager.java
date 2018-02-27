@@ -82,8 +82,8 @@ public class UtilManager implements RxPopupViewManager.TipListener {
         if (titlePopup == null) {
             initPopupView(arr);
             titlePopup.setColorItemText(context.getResources().getColor(R.color.gray));
-            titlePopup.show(view, 0);//dex与view的上下间距
         }
+        titlePopup.show(view, 0);//dex与view的上下间距
         return titlePopup;
     }
     //返回的titlePopup可在视图中实现点击选择事件
@@ -119,4 +119,6 @@ public class UtilManager implements RxPopupViewManager.TipListener {
         SLogTool.e(view + "" + i + "" + b + "");
 
     }
+
+    //==========================================popUpWindow End============================================================================================
 }

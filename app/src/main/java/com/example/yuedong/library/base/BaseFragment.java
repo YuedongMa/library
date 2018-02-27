@@ -20,64 +20,27 @@ import butterknife.Unbinder;
  * Created by mayuedong on 2017/11/1.
  */
 
-public abstract class BaseFragment<T extends BasePresenter> extends Fragment implements BaseView {
-    protected Unbinder unbinder;
-    private View mView;
+public abstract class BaseFragment<T extends BasePresenter> extends SupperFragment {
     protected T mPresenter;
-    private Context mContext;
-    protected UtilManager $;
 
-    @Nullable
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(initLayout(savedInstanceState), null);
-        if($==null)$=UtilManager.getInstance(getActivity());
+    protected void initSupperData(Bundle savedInstanceState) {
         initPresenter();
-        return mView;
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
         if (mPresenter != null) {
             mPresenter.attachView(this);
         }
-        unbinder = ButterKnife.bind(this, view);
-        initData();
-        //onEvent();
+        initData(savedInstanceState);
     }
 
-    @Override
-    public void onAttach(Context context) {
-        mContext = context;
-        super.onAttach(context);
-    }
-
-    public abstract int initLayout(Bundle savedInstanceState);
-
-    protected abstract void initData();
+    protected abstract void initData(Bundle bundle);
 
     protected abstract void initPresenter();
-
-  //  protected abstract void onEvent();
 
     protected abstract void clearDisposable();
 
     @Override
-    public void onDetach() {
-        unbinder.unbind();
+    protected void onDetachActivity() {
         clearDisposable();
-        super.onDetach();
-
-    }
-
-    @Override
-    public void showLoading() {
-        SLoadingTool.instance(getActivity()).show();
-    }
-
-    @Override
-    public void disLoading() {
-        SLoadingTool.instance(getActivity()).close();
     }
 }

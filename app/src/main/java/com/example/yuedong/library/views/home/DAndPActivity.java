@@ -1,6 +1,5 @@
 package com.example.yuedong.library.views.home;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -10,26 +9,22 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.content.FileProvider;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-
 import com.example.yuedong.library.R;
 import com.example.yuedong.library.base.BaseActivity_;
-import com.vondear.rxtools.SLoadingTool;
-import com.vondear.rxtools.SThreadPoolTool;
 import com.vondear.rxtools.view.RxTitle;
 import com.vondear.rxtools.view.popupwindows.tools.RxPopupView;
 
 import java.io.File;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import ha.excited.BigNews;
 
 public class DAndPActivity extends BaseActivity_ {
@@ -69,7 +64,7 @@ public class DAndPActivity extends BaseActivity_ {
     }
 
     @Override
-    public void initData() {
+    public void initData(Bundle bundle) {
         showLoading();
         title.setLeftFinish(this);
         // title.getLlLeft().setBackgroundResource(R.drawable.bg_titlebar_press);
@@ -84,31 +79,7 @@ public class DAndPActivity extends BaseActivity_ {
                 disLoading();
             }
         }, 2000);
-    }
 
-    int i = 0;
-
-    @Override
-    public void onEvent() {
-
-        bt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-//                if (i == 0) {
-//                    $.showToast("Normal");
-//                } else if (i == 1) {
-//                    $.showSuccess("Success");
-//                } else if (i == 2) {
-//                    $.showError("Error");
-//                } else if (i == 3) {
-//                    $.showInfo("Info");
-//                } else if (i == 4) {
-//                    $.showWarn("Warn");
-//                }
-//                i += 1;
-            }
-        });
     }
 
     private String getsdpath() {
@@ -149,7 +120,6 @@ public class DAndPActivity extends BaseActivity_ {
      * @param view
      */
     public void bsdiff(View view) {
-
         loadding.setVisibility(View.VISIBLE);
         new DiffTask().execute();
     }
@@ -172,6 +142,11 @@ public class DAndPActivity extends BaseActivity_ {
      */
     public void installNew(View view) {
         install(hasUpdateApkDir);
+    }
+
+    @OnClick(R.id.bt)
+    public void onViewClicked(View view) {
+        $.setPopDirection(RxPopupView.POSITION_ABOVE).showPop(view, ll, "Pop Ok");
     }
 
     /**

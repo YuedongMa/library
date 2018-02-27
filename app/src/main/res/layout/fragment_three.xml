@@ -1,18 +1,24 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context="com.example.yuedong.library.views.home.fragments.ThreeFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:text="three" />
     <Button
         android:id="@+id/btclick"
-        android:text="点击"
+        android:text="显示大图"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+    <Button
+        android:id="@+id/btDrawer"
+        android:text="抽屉显示"
         android:layout_width="match_parent"
         android:layout_height="40dp" />
 
-</FrameLayout>
+</LinearLayout>

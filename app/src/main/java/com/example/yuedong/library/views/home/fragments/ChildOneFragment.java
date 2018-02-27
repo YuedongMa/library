@@ -43,19 +43,15 @@ public class ChildOneFragment extends BaseFragment_ {
     }
 
     @Override
-    public int initLayout(Bundle savedInstanceState) {
+    protected int initLayout(Bundle savedInstanceState) {
         return R.layout.fragment_child_one;
     }
 
     @Override
-    protected void initData() {
+    protected void initData(Bundle bundle) {
 
     }
 
-    @Override
-    protected void onEvent() {
-
-    }
 
 
 

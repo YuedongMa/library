@@ -28,7 +28,7 @@
 
             <Button
                 android:id="@+id/bt"
-                android:layout_width="150dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:paddingBottom="0dp"
                 android:paddingLeft="5dp"

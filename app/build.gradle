@@ -21,8 +21,8 @@ android {
     buildTypes {
         debug {
             buildConfigField "String", "BASE_HOST", "\"http://118.190.162.163\""
-            buildConfigField "String","BASE_URL","\"http://\""
-           // applicationIdSuffix ".develop"
+            buildConfigField "String", "BASE_URL", "\"http://\""
+            // applicationIdSuffix ".develop"
             resValue "string", "app_name", "测试"
             minifyEnabled false
             shrinkResources false
@@ -30,7 +30,7 @@ android {
         }
         release {
             buildConfigField "String", "BASE_HOST", "\"http://118.190.162.163\""
-            buildConfigField "String","BASE_URL","\"http://\""
+            buildConfigField "String", "BASE_URL", "\"http://\""
             applicationIdSuffix ".release"
             resValue "string", "app_name", "生产"
             minifyEnabled false//混淆
@@ -41,7 +41,7 @@ android {
     }
 }
 repositories {
-    flatDir{
+    flatDir {
         dirs 'libs'
     }
 }
@@ -50,8 +50,8 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile(name:'tool',ext:'aar')
-    compile'com.android.support.constraint:constraint-layout:1.0.2'
+    compile(name: 'tools', ext: 'aar')
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:appcompat-v7:26.0.2'
     compile 'com.android.support:support-v4:26.0.2'
     compile 'com.android.support:design:26.0.2'

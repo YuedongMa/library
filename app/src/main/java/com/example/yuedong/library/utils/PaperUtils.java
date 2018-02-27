@@ -45,6 +45,8 @@ public class PaperUtils {
         }
         saveCityOptionTwo(options2Items);
         saveCityOptionThree(options3Items);
+        jsonbean.clear();
+        jsonbean=null;
     }
 
     private static  ArrayList<JsonBean> parseJson(String json) {

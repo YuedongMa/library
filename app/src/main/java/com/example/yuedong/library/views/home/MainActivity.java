@@ -1,4 +1,5 @@
 package com.example.yuedong.library.views.home;
+
 import android.Manifest;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -26,15 +27,20 @@ public class MainActivity extends BaseActivity_ {
     private FragmentManager fManager;
     @BindView(R.id.rx_title)
     RxTitle mRxTitle;
+    private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
+    private long mBackPressed;
+
     @Override
     public int initLayout(Bundle savedInstanceState) {
 
         return R.layout.activity_main;
-    }
-    @Override
-    public void initData() {
 
-        toCheckPermission(new String[]{Manifest.permission.READ_PHONE_STATE,Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE}, this, new QuestPermissionListener() {
+    }
+
+    @Override
+    public void initData(Bundle bundle) {
+
+        toCheckPermission(new String[]{Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, this, new QuestPermissionListener() {
             @Override
             public void onPermissionAccept() {
                 Toast.makeText(MainActivity.this, "ok", Toast.LENGTH_SHORT).show();
@@ -48,11 +54,11 @@ public class MainActivity extends BaseActivity_ {
 
         mBottomBar = (W_BottomBar) findViewById(R.id.bottomBar);
         fManager = getSupportFragmentManager();
-        switchFragment(0, 0, OneFragment.newInstance());
+        switchFragment(0, 0, new OneFragment());
         mBottomBar
-                .addItem(new W_BottomBarTab(this, R.mipmap.ic_message_white_24dp, "首页",new OneFragment()))
-                .addItem(new W_BottomBarTab(this, R.mipmap.ic_message_white_24dp, "消息", TwoFragment.newInstance()))
-                .addItem(new W_BottomBarTab(this, R.mipmap.ic_message_white_24dp, "我的", ThreeFragment.newInstance()))  ;
+                .addItem(new W_BottomBarTab(this, R.mipmap.ic_message_white_24dp, "首页", new OneFragment()))
+                .addItem(new W_BottomBarTab(this, R.mipmap.ic_message_white_24dp, "消息", new TwoFragment()))
+                .addItem(new W_BottomBarTab(this, R.mipmap.ic_message_white_24dp, "我的", new ThreeFragment()));
 
 //
         mBottomBar.setOnTabSelectedListener(new W_BottomBar.OnTabSelectedListener() {
@@ -74,10 +80,6 @@ public class MainActivity extends BaseActivity_ {
         });
     }
 
-    @Override
-    public void onEvent() {
-
-    }
     private void switchFragment(int index, int pre, Fragment frament) {
         mBottomBar.setCurrentItem(index);
         FragmentTransaction transaction = fManager.beginTransaction();
@@ -94,5 +96,16 @@ public class MainActivity extends BaseActivity_ {
             transaction.add(R.id.tab_container, mFragments[index]);
         }
         transaction.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) {
+            super.onBackPressed();
+            return;
+        } else {
+            Toast.makeText(getBaseContext(), "再次点击返回键退出", Toast.LENGTH_SHORT).show();
+        }
+        mBackPressed = System.currentTimeMillis();
     }
 }

@@ -2,7 +2,9 @@ package com.example.yuedong.library;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Build;
+import android.util.Log;
 
 import com.example.yuedong.library.config.ApiConfig;
 import com.example.yuedong.library.config.AppConfig;
@@ -10,6 +12,7 @@ import com.example.yuedong.library.http.JDBaseRequest;
 import com.example.yuedong.library.http.JDHttp;
 import com.example.yuedong.library.http.OriginJsonConverterFactory;
 import com.example.yuedong.library.listener.activitymanager.BDBActivityLifecycleCallbacks;
+import com.example.yuedong.library.utils.PaperUtils;
 import com.example.yuedong.library.utils.SSLUtil;
 import com.vondear.rxtools.RxTool;
 
@@ -36,12 +39,32 @@ public class MainApplication extends Application {
         mContext = this;
         Paper.init(this);
        RxTool.init(this);
+       if(PaperUtils.getCityOptionOne()==null){
+        new Init().execute();
+       }
+
+
         httpConfig();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
             this.registerActivityLifecycleCallbacks(new BDBActivityLifecycleCallbacks());
         }
     }
+        private class Init extends AsyncTask<String,Void,Integer>
 
+    {
+
+        @Override
+        protected Integer doInBackground(String... strings) {
+            PaperUtils.initCity(mContext);
+            return 0;
+        }
+
+        @Override
+        protected void onPostExecute(Integer integer) {//任务执行完后执行
+            super.onPostExecute(integer);
+
+        }
+    }
     /**
      * 网络请求基础配置
      */

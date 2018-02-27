@@ -17,29 +17,18 @@ public class OneFragment extends BaseFragment_ {
      ViewPager viewPager;
     private String[] tabs = {"全部", "消息"};
     private Fragment[] fragments = {ChildOneFragment.newInstance(), ChildTwoFragment.newInstance()};
-    public static OneFragment newInstance() {
-        Bundle args = new Bundle();
-        OneFragment fragment = new OneFragment();
-        fragment.setArguments(args);
-        return fragment;
-    }
-
 
     @Override
-    public int initLayout(Bundle savedInstanceState) {
+    protected int initLayout(Bundle savedInstanceState) {
         return R.layout.fragment_one;
     }
 
     @Override
-    protected void initData() {
+    protected void initData(Bundle bundle) {
         viewPager.setAdapter(new FragmentAdapter(getChildFragmentManager(), tabs, fragments,tab));
          tab.setupWithViewPager(viewPager);
     }
 
-    @Override
-    protected void onEvent() {
-
-    }
 
 
 }
