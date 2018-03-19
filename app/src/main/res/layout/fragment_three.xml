@@ -20,5 +20,11 @@
         android:text="抽屉显示"
         android:layout_width="match_parent"
         android:layout_height="40dp" />
+    <Button
+        android:id="@+id/btToast"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textColor="@color/gray"
+        android:text="TOast测试"/>
 
 </LinearLayout>

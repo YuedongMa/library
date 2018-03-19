@@ -1,13 +1,17 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.butterknife'
 android {
+    lintOptions {
+        abortOnError false
+    }
+
     compileSdkVersion 26
     buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "com.example.yuedong.library"
         minSdkVersion 15
         targetSdkVersion 26
-        versionCode 1
+        versionCode 2
         versionName "1.0"
         javaCompileOptions {
             annotationProcessorOptions {
@@ -41,16 +45,18 @@ android {
     }
 }
 repositories {
+    jcenter()
     flatDir {
         dirs 'libs'
     }
 }
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile(name: 'tools', ext: 'aar')
+    compile(name: 'tool', ext: 'aar')
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:appcompat-v7:26.0.2'
     compile 'com.android.support:support-v4:26.0.2'
@@ -71,8 +77,28 @@ dependencies {
     compile 'com.android.support:multidex:1.0.1'
     //===
     compile 'com.github.ha-excited:BigNews:0.1.2'
-
+    //======
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.2.0'
-
 }
+//删除dynamic.jar包任务
+task clearJar(type: Delete) {
+    delete('libs/fixbug.jar')
+}
+//打包任务
+task makeJar(type: org.gradle.api.tasks.bundling.Jar) {
+//指定生成的jar名称
+    baseName 'fixbug'
+//从哪里打包class文件
+    from('build/intermediates/classes/debug/com/project/fixbug/')
+//打包到jar后的目录结构
+    into('com/project/fixbug/')
+//去掉不需要打包的目录和文件
+    exclude('IFixbug.class', 'FixBugImpl.class')
+    // exclude('text/', 'R.class', 'BuildConfig.class')
+//去掉R$开头的文件
+    exclude { it.name.startsWith('R$'); }
+}
+
+makeJar.dependsOn(clearJar, build)
+

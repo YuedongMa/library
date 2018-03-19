@@ -2,9 +2,12 @@ package com.example.yuedong.library.http;
 
 import android.content.Context;
 
+import com.example.yuedong.library.http.download.DownloadRetrofit;
 import com.example.yuedong.library.http.interceptor.HttpLogInterceptor;
 
+import io.reactivex.Observable;
 import okhttp3.OkHttpClient;
+import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 
 /**
@@ -12,13 +15,13 @@ import retrofit2.Retrofit;
  *
  */
 
-public class JDHttp {
+public class MHttp {
 
 	private static Context sContext;
 	private static Retrofit.Builder sRetrofitBuilder;
 	private static OkHttpClient.Builder sOkHttpBuilder;
 
-	private static final JDHttpConfig sJDHttpConfig = JDHttpConfig.getInstance();
+	private static final MHttpConfig sJDHttpConfig = MHttpConfig.getInstance();
 
 	public static void init(Context context, boolean isDebug) {
 		if (sContext == null && context != null) {
@@ -32,7 +35,7 @@ public class JDHttp {
 		}
 	}
 
-	public static JDHttpConfig config() {
+	public static MHttpConfig config() {
 		return sJDHttpConfig;
 	}
 
@@ -45,7 +48,7 @@ public class JDHttp {
 
 	public static OkHttpClient.Builder getOkHttpBuilder() {
 		if (sOkHttpBuilder == null) {
-			throw new IllegalStateException("Please call JDHttp.init(this) in Application to initialize!");
+			throw new IllegalStateException("Please call MHttp.init(this) in Application to initialize!");
 		}
 		return sOkHttpBuilder;
 	}

@@ -13,10 +13,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import com.example.yuedong.library.R;
 import com.example.yuedong.library.base.basepresenter.BaseView;
 import com.example.yuedong.library.listener.QuestPermissionListener;
 import com.example.yuedong.library.utils.UtilManager;
 import com.vondear.rxtools.SLoadingTool;
+import com.vondear.rxtools.view.RxTitle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +34,7 @@ public abstract class SupperActivity extends AppCompatActivity implements BaseVi
     private SLoadingTool loadingTool;
     protected static QuestPermissionListener listener;
     protected Unbinder unbinder;
-    protected UtilManager $;
+    public UtilManager $;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,7 +49,20 @@ public abstract class SupperActivity extends AppCompatActivity implements BaseVi
     public abstract int initLayout(Bundle savedInstanceState);
 
     public abstract void initSupperData(Bundle bundle);
+
     public abstract void onActivityDestroy();
+
+    protected void initTitle(RxTitle title) {
+        title.setLeftFinish(this);
+        title.getLlLeft().setBackgroundResource(R.drawable.bg_back_press);
+    }
+
+    protected void initTitle(RxTitle title, boolean showLeft) {
+        if (showLeft) {
+            title.setLeftFinish(this);
+            title.getLlLeft().setBackgroundColor(R.drawable.bg_back_press);
+        }
+    }
 
     @Override
     public void showLoading() {
@@ -75,41 +90,27 @@ public abstract class SupperActivity extends AppCompatActivity implements BaseVi
      * @param context
      * @param listener
      */
-    public static boolean toCheckPermission(String[] permission, Context context, QuestPermissionListener listener) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            int checkCallPhonePermission = ContextCompat.checkSelfPermission(context, permission[0]);
-            if (checkCallPhonePermission != PackageManager.PERMISSION_DENIED) {
-                return false;
-            } else requestRuntimePermission((Activity) context,
-                    permission,
-                    listener);
-            return true;
-        }
-        return false;
-    }
+    public boolean toCheckPermission(String[] permission, Context context, QuestPermissionListener listener) {
 
-    /**
-     * 运行时请求权限
-     *
-     * @param activity
-     * @param permissions
-     * @param permissionListener
-     */
-    public static void requestRuntimePermission(Activity activity, String[] permissions, QuestPermissionListener permissionListener) {
-        if (activity == null) {
-            return;
-        }
-        List<String> requestPermissions = new ArrayList<>();
-        for (String permission : permissions) {
-            if (ActivityCompat.checkSelfPermission(activity, permission) == PackageManager.PERMISSION_DENIED) {
-                requestPermissions.add(permission);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            List<String> requestPermissions = new ArrayList<>();
+            for (int i = 0; i < permission.length; i++) {
+                int checkCallPhonePermission = ContextCompat.checkSelfPermission(context, permission[i]);
+                if (checkCallPhonePermission != PackageManager.PERMISSION_DENIED) {
+                    return false;
+                } else {
+                    if (ActivityCompat.checkSelfPermission(context, permission[i]) == PackageManager.PERMISSION_DENIED) {
+                        requestPermissions.add(permission[i]);
+                    }
+                }
+            }
+            SupperActivity.listener = listener;
+            if (!requestPermissions.isEmpty()) {
+                ActivityCompat.requestPermissions(SupperActivity.this, requestPermissions.toArray(new String[requestPermissions.size()]), 100);
+                return true;
             }
         }
-
-        BaseActivity_.listener = permissionListener;
-        if (!requestPermissions.isEmpty()) {
-            ActivityCompat.requestPermissions(activity, requestPermissions.toArray(new String[requestPermissions.size()]), 100);
-        }
+        return false;
     }
 
     /**

@@ -5,7 +5,7 @@ package com.example.yuedong.library.base.basepresenter;
  *  Created by mayuedong on 2017/11/1.
  */
 
-public class JDPresenter<T extends BaseView> implements BasePresenter<T> {
+public class MPresenter<T extends BaseView> implements BasePresenter<T> {
 
     protected T mView;
 

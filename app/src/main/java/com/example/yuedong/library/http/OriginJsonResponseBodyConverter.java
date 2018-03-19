@@ -2,9 +2,12 @@ package com.example.yuedong.library.http;
 
 import android.util.Log;
 
+import com.example.yuedong.library.base.basepresenter.BaseResponse;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
+import com.vondear.rxtools.SLogTool;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -35,7 +38,7 @@ public class OriginJsonResponseBodyConverter<T> implements Converter<ResponseBod
         try {
             String json = value.string();
             JSONObject object = new JSONObject(json);
-            Log.i("Server==","Server json：" + object.toString());
+            SLogTool.i("Server Response json: " + object.toString());
             if (object.has("code")){
                 if (object.getInt("code") == 200){// http success
                     if (object.has("result")){
@@ -63,7 +66,7 @@ public class OriginJsonResponseBodyConverter<T> implements Converter<ResponseBod
 //                            responseData.setMsg(objectResult.getString("msg"));
 //                            baseResponse.setCode(200);
 //                            baseResponse.setResult(responseData);
-//                            t = (T) baseResponse;
+ //                           t = (T) baseResponse;
                         }
                     }
                 } else {// http fail

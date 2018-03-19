@@ -13,7 +13,6 @@
         android:layout_height="wrap_content"
         android:background="@color/system_bg"
         android:clipToPadding="true"
-        app:clickColor="#bcbcbc"
         app:leftIconVisibility="true"
         android:fitsSystemWindows="true"
         app:title="增量更新测试"/>

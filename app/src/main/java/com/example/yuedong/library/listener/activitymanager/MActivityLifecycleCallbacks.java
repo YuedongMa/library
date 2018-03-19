@@ -11,7 +11,7 @@ import android.util.Log;
  *
  */
 
-public class BDBActivityLifecycleCallbacks implements Application.ActivityLifecycleCallbacks {
+public class MActivityLifecycleCallbacks implements Application.ActivityLifecycleCallbacks {
 
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {

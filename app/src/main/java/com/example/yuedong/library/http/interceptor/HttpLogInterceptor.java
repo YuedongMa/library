@@ -3,7 +3,7 @@ package com.example.yuedong.library.http.interceptor;
 import android.support.annotation.NonNull;
 
 
-import com.example.yuedong.library.utils.LogUtil;
+import com.vondear.rxtools.SLogTool;
 
 import java.io.IOException;
 import java.net.URLDecoder;
@@ -64,7 +64,7 @@ public class HttpLogInterceptor implements Interceptor {
         try {
             response = chain.proceed(request);
         } catch (Exception e) {
-            LogUtil.e("--- Fail ---" + e.getMessage());
+            SLogTool.e("--- Fail ---" + e.getMessage());
             throw e;
         }
         long tookMs = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs);
@@ -82,26 +82,26 @@ public class HttpLogInterceptor implements Interceptor {
 
         try {
             String requestStartMessage = "--> " + request.method() + ' ' + request.url() + ' ' + protocol;
-            LogUtil.i(requestStartMessage);
+            SLogTool.i(requestStartMessage);
 
             if (logHeaders) {
                 Headers headers = request.headers();
                 for (int i = 0, count = headers.size(); i < count; i++) {
-                    LogUtil.i("\t" + headers.name(i) + ": " + headers.value(i));
+                    SLogTool.i("\t" + headers.name(i) + ": " + headers.value(i));
                 }
                 if (logBody && hasRequestBody) {
                     if (isPlaintext(requestBody.contentType())) {
-                        LogUtil.i("\t"+requestBody.contentType());
+                        SLogTool.i("\t"+requestBody.contentType());
                         bodyToString(request);
                     } else {
-                        LogUtil.i("\tbody: maybe [file part] , too large too print , ignored!");
+                        SLogTool.i("\tbody: maybe [file part] , too large too print , ignored!");
                     }
                 }
             }
         } catch (Exception e) {
-            LogUtil.e(e.getMessage());
+            SLogTool.e(e.getMessage());
         } finally {
-            LogUtil.i("--- END ---" + request.method());
+            SLogTool.i("--- END ---" + request.method());
         }
     }
 
@@ -113,27 +113,27 @@ public class HttpLogInterceptor implements Interceptor {
         boolean logHeaders = (level == Level.BODY || level == Level.HEADERS);
 
         try {
-            LogUtil.i("<-- " + clone.code() + ' ' + clone.message() + ' ' + clone.request().url() + " (" + tookMs + "ms）");
+            SLogTool.i("<-- "+ clone.code() + ' ' + clone.message() + ' ' + clone.request().url() + " (" + tookMs + "ms）");
             if (logHeaders) {
                 Headers headers = clone.headers();
                 for (int i = 0, count = headers.size(); i < count; i++) {
-                    LogUtil.i("\t" + headers.name(i) + ": " + headers.value(i));
+                    SLogTool.i("\t" + headers.name(i) + ": " + headers.value(i));
                 }
                 if (logBody && HttpHeaders.hasVaryAll(clone)) {
                     if (responseBody != null && isPlaintext(responseBody.contentType())) {
                         String body = responseBody.string();
-                        LogUtil.i("\t" + body + ":" + body);
+                        SLogTool.i("\t" + body + ":" + body);
                         responseBody = ResponseBody.create(responseBody.contentType(), body);
                         return response.newBuilder().body(responseBody).build();
                     } else {
-                        LogUtil.i("\tbody: maybe [file part] , too large too print , ignored!");
+                        SLogTool.i("\tbody: maybe [file part] , too large too print , ignored!");
                     }
                 }
             }
         } catch (Exception e) {
-            LogUtil.e(e.getMessage());
+            SLogTool.e(e.getMessage());
         } finally {
-            LogUtil.i("--- END HTTP ---");
+            SLogTool.i("--- END HTTP ---");
         }
         return response;
     }
@@ -171,7 +171,7 @@ public class HttpLogInterceptor implements Interceptor {
                     charset = contentType.charset(UTF8);
                 }
                 if (charset != null) {
-                    LogUtil.i("\tbody:" + URLDecoder.decode(buffer.readString(charset), UTF8.name()));
+                    SLogTool.i("\tbody:" + URLDecoder.decode(buffer.readString(charset), UTF8.name()));
                 }
             }
         } catch (Exception e) {

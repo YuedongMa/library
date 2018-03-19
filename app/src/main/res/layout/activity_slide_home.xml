@@ -12,9 +12,9 @@
         android:layout_height="wrap_content"
         android:background="@color/system_bg"
         android:clipToPadding="true"
-       app:leftIconVisibility="false"
+        app:leftIconVisibility="false"
         android:fitsSystemWindows="true"
-        app:title="测试"/>
+        app:title="滑动"/>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -22,6 +22,7 @@
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
             android:layout_marginBottom="52dp"
+            app:isSlide="false"
             android:layout_height="match_parent"/>
 
         <com.example.yuedong.library.widget.bottombar.W_BottomBar

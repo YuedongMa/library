@@ -1,4 +1,4 @@
-package com.example.yuedong.library.exception;
+package com.example.yuedong.library.http.exception;
 
 import com.example.yuedong.library.MainApplication;
 import com.example.yuedong.library.utils.NetworkUtil;
@@ -21,18 +21,18 @@ import retrofit2.HttpException;
  *
  */
 
-public class JDExceptionManager {
+public class MExceptionManager {
 
-    public static JDException handleException(Throwable throwable) {
+    public static MException handleException(Throwable throwable) {
 
-        JDException jdException = null;
+        MException jdException = null;
 
         boolean isUnknown;
 
         if (throwable instanceof HttpException) {
             isUnknown = false;
             HttpException httpException = (HttpException) throwable;
-            jdException = new JDException(ERROR_INFO.HTTP_ERROR);
+            jdException = new MException(ERROR_INFO.HTTP_ERROR);
             if (NetworkUtil.isNetworkConnected(MainApplication.getContext())) {
                 jdException.setErrorMsg("服务器连接异常");
             } else {
@@ -40,7 +40,7 @@ public class JDExceptionManager {
             }
         } else if (throwable instanceof ApiException) {
             isUnknown = false;
-            jdException = new JDException(ERROR_INFO.ERROR);
+            jdException = new MException(ERROR_INFO.ERROR);
             if (500 == ((ApiException) throwable).getCode()) {
                 jdException.setErrorMsg("服务器异常");
             } else {
@@ -50,13 +50,13 @@ public class JDExceptionManager {
                 || throwable instanceof JsonParseException
                 || throwable instanceof ParseException) {
             isUnknown = false;
-            jdException = new JDException(ERROR_INFO.PARSE_ERROR);
+            jdException = new MException(ERROR_INFO.PARSE_ERROR);
             jdException.setErrorMsg("数据处理异常");
         } else if (throwable instanceof ConnectException
                 || throwable instanceof SocketTimeoutException
                 || throwable instanceof UnknownHostException) {
             isUnknown = false;
-            jdException = new JDException(ERROR_INFO.HTTP_ERROR);
+            jdException = new MException(ERROR_INFO.HTTP_ERROR);
             if (NetworkUtil.isNetworkConnected(MainApplication.getContext())) {
                 jdException.setErrorMsg("连接超时");
             } else {
@@ -64,7 +64,7 @@ public class JDExceptionManager {
             }
         } else {
             isUnknown = true;
-            jdException = new JDException(ERROR_INFO.UNKNOWN);
+            jdException = new MException(ERROR_INFO.UNKNOWN);
             jdException.setErrorMsg("未知错误");
         }
         if (!isUnknown){

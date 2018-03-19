@@ -8,7 +8,6 @@ import android.widget.Button;
 
 import com.example.yuedong.library.R;
 import com.example.yuedong.library.base.BaseFragment;
-import com.example.yuedong.library.models.UpdVersionModule;
 import com.example.yuedong.library.presenter.UpdatePresenter;
 import com.example.yuedong.library.presenter.contract.UpdateContract;
 import com.example.yuedong.library.views.home.DAndPActivity;
@@ -30,12 +29,15 @@ public class TwoFragment extends BaseFragment<UpdatePresenter> implements Update
     Button btclTest;
 
     public TwoFragment() {
+
     }
+
 
     @Override
     protected int initLayout(Bundle savedInstanceState) {
         return R.layout.fragment_two;
     }
+
 
     @Override
     protected void initData(Bundle bundle) {
@@ -53,13 +55,13 @@ public class TwoFragment extends BaseFragment<UpdatePresenter> implements Update
     }
 
     @Override
-    public void updVersionSuccess(UpdVersionModule versionModule) {
+    public void getVersionSuccess() {
         disLoading();
-        $.showSuccess("最新版本：" + versionModule.getLatestVersion());
+        mPresenter.checkAndUpdateApk(getActivity());
     }
 
     @Override
-    public void updVersionFail(String errorMsg, boolean isTokenEP) {
+    public void getVersionFail(String errorMsg, boolean isTokenEP) {
         disLoading();
         $.showToast(errorMsg);
     }
@@ -74,7 +76,12 @@ public class TwoFragment extends BaseFragment<UpdatePresenter> implements Update
         $.showToast(date.getTime() + "");
     }
 
-    @OnClick({R.id.button, R.id.bttime, R.id.btclTest, R.id.btUpdate})
+    @Override
+    public void showCommentDialogFinish() {
+        $.showToast("dialog Finish");
+    }
+
+    @OnClick({R.id.button, R.id.bttime, R.id.btclTest, R.id.btUpdate, R.id.btDialog})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.button:
@@ -89,6 +96,10 @@ public class TwoFragment extends BaseFragment<UpdatePresenter> implements Update
             case R.id.btUpdate:
                 showLoading();
                 mPresenter.updVersion();
+                break;
+            case R.id.btDialog:
+             //  $.showCommentDilog(getActivity(),"neirng","tishi");
+                mPresenter.showCommentDialog(getActivity());
                 break;
         }
     }

@@ -11,24 +11,24 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
  *
  */
 
-public abstract class JDBaseRequest {
+public abstract class MBaseRequest {
 
-	private static JDHttpConfig jdHttpConfig;
+	private static MHttpConfig jdHttpConfig;
 
 	/**
 	 * 生成全局配置
 	 */
 	public static void generateJDHttpConfig() {
-		jdHttpConfig = JDHttp.config();
+		jdHttpConfig = MHttp.config();
 
 		if (jdHttpConfig.getBaseUrl() == null) {
 			jdHttpConfig.baseUrl("");
 		}
 
-		JDHttp.getRetrofitBuilder().baseUrl(jdHttpConfig.getBaseUrl());
+		MHttp.getRetrofitBuilder().baseUrl(jdHttpConfig.getBaseUrl());
 
 		if (jdHttpConfig.getConverterFactory() != null) {
-			JDHttp.getRetrofitBuilder().addConverterFactory(jdHttpConfig.getConverterFactory());
+			MHttp.getRetrofitBuilder().addConverterFactory(jdHttpConfig.getConverterFactory());
 		}
 
 		if (jdHttpConfig.getCallAdapterFactory() == null) {
@@ -38,15 +38,15 @@ public abstract class JDBaseRequest {
 		if (jdHttpConfig.getHostnameVerifier() == null){
 			jdHttpConfig.hostnameVerifier(new SSLUtil.UnSafeHostnameVerifier(jdHttpConfig.getBaseUrl()));
 		}
-		JDHttp.getOkHttpBuilder().hostnameVerifier(jdHttpConfig.getHostnameVerifier());
+		MHttp.getOkHttpBuilder().hostnameVerifier(jdHttpConfig.getHostnameVerifier());
 
 		if (jdHttpConfig.getSslSocketFactory() == null){
 			jdHttpConfig.sslSocketFactory(SSLUtil.getSslSocketFactory(null, null, null));
 		}
-		JDHttp.getOkHttpBuilder().sslSocketFactory(jdHttpConfig.getSslSocketFactory());
+		MHttp.getOkHttpBuilder().sslSocketFactory(jdHttpConfig.getSslSocketFactory());
 
-		JDHttp.getRetrofitBuilder().addCallAdapterFactory(jdHttpConfig.getCallAdapterFactory());
-		JDHttp.client();
+		MHttp.getRetrofitBuilder().addCallAdapterFactory(jdHttpConfig.getCallAdapterFactory());
+		MHttp.client();
 	}
 
 }

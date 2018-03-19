@@ -1,17 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-android:id="@+id/parent_layout"
+<RelativeLayout android:id="@+id/parent_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+android:background="@color/white"
     android:orientation="vertical"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
 <LinearLayout
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent">
+    <com.vondear.rxtools.view.rippleview.MyView
+        android:id="@+id/mSLideMenu"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:mleftText="底部滑动菜单"
+       app:type="1"
+        />
+    <com.vondear.rxtools.view.rippleview.MyView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:mleftText="属性"
+        app:type="1"
+        />
+    <com.vondear.rxtools.view.rippleview.MyView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:mleftText="设置"
+        app:type="1"
+        />
+    <com.vondear.rxtools.view.rippleview.MyView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:mleftText="设置"
+        app:type="1"
+        />
     <TextView
         android:layout_marginTop="100dp"
         android:id="@+id/text_view"

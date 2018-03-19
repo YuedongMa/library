@@ -16,13 +16,15 @@ import io.reactivex.disposables.Disposable;
 
 public class UpdateContract {
     public interface View extends BaseView {
-        void updVersionSuccess(UpdVersionModule versionModule);
+        void getVersionSuccess();
 
-        void updVersionFail(String errorMsg, boolean isTokenEP);
+        void getVersionFail(String errorMsg, boolean isTokenEP);
 
         void onCitySelectedResult(String msg);
 
         void onTimeSelecedResult(Date date);
+
+        void showCommentDialogFinish();
     }
 
     public interface Presenter extends BasePresenter<View> {
@@ -30,8 +32,12 @@ public class UpdateContract {
 
         void clearDisposable();
 
+        void checkAndUpdateApk(Context context);
+
         void onCitySelected(Context context);
 
         void onTimeSeleced(Context context);
+
+        void showCommentDialog(Context context);
     }
 }

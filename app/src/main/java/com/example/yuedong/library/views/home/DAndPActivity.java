@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.yuedong.library.R;
 import com.example.yuedong.library.base.BaseActivity_;
+import com.vondear.rxtools.SAppTool;
 import com.vondear.rxtools.view.RxTitle;
 import com.vondear.rxtools.view.popupwindows.tools.RxPopupView;
 
@@ -65,20 +66,12 @@ public class DAndPActivity extends BaseActivity_ {
 
     @Override
     public void initData(Bundle bundle) {
-        showLoading();
-        title.setLeftFinish(this);
-        // title.getLlLeft().setBackgroundResource(R.drawable.bg_titlebar_press);
+       initTitle(title);
         loadding = (ProgressBar) findViewById(R.id.loadding);
         oldApkDir = getApplicationContext().getPackageResourcePath();
         newApkDir = Environment.getExternalStorageDirectory().getPath() + File.separator + "new.apk";
         hasUpdateApkDir = getsdpath() + "hasUpdateApkDir.apk";
         oldToNewPatchDir = getsdpath() + "patch.patch";
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                disLoading();
-            }
-        }, 2000);
 
     }
 
@@ -141,7 +134,8 @@ public class DAndPActivity extends BaseActivity_ {
      * @param view
      */
     public void installNew(View view) {
-        install(hasUpdateApkDir);
+        SAppTool.installApp(DAndPActivity.this,hasUpdateApkDir);
+     //   install(hasUpdateApkDir);
     }
 
     @OnClick(R.id.bt)

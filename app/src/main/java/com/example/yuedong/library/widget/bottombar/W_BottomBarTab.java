@@ -19,7 +19,9 @@ import android.widget.TextView;
 
 import com.example.yuedong.library.R;
 
-
+/**
+ * Created by YuedongMa on 2017/3/26.
+ */
 public class W_BottomBarTab extends FrameLayout {
     private ImageView mIcon;
     private TextView mTvTitle;

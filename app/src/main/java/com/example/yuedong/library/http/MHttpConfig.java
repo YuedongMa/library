@@ -13,9 +13,9 @@ import retrofit2.Converter;
  *
  */
 
-public class JDHttpConfig {
+public class MHttpConfig {
 
-	private static JDHttpConfig sInstance;
+	private static MHttpConfig sInstance;
 
 	private String baseUrl;
 	private int retryCount;
@@ -34,11 +34,11 @@ public class JDHttpConfig {
 	private Converter.Factory converterFactory;
 	private CallAdapter.Factory callAdapterFactory;
 
-	public static JDHttpConfig getInstance() {
+	public static MHttpConfig getInstance() {
 		if (sInstance == null) {
-			synchronized (JDHttpConfig.class) {
+			synchronized (MHttpConfig.class) {
 				if (sInstance == null) {
-					sInstance = new JDHttpConfig();
+					sInstance = new MHttpConfig();
 				}
 			}
 		}
@@ -63,7 +63,7 @@ public class JDHttpConfig {
 	 * @param baseUrl
 	 * @return
 	 */
-	public JDHttpConfig baseUrl(String baseUrl) {
+	public MHttpConfig baseUrl(String baseUrl) {
 		this.baseUrl = notNull(baseUrl, "baseUrl == null");
 		return this;
 	}
@@ -74,7 +74,7 @@ public class JDHttpConfig {
 	 * @param factory
 	 * @return
 	 */
-	public JDHttpConfig converterFactory(Converter.Factory factory) {
+	public MHttpConfig converterFactory(Converter.Factory factory) {
 		this.converterFactory = factory;
 		return this;
 	}
@@ -85,17 +85,17 @@ public class JDHttpConfig {
 	 * @param factory
 	 * @return
 	 */
-	public JDHttpConfig callAdapterFactory(CallAdapter.Factory factory) {
+	public MHttpConfig callAdapterFactory(CallAdapter.Factory factory) {
 		this.callAdapterFactory = factory;
 		return this;
 	}
 
-	public JDHttpConfig hostnameVerifier(HostnameVerifier hostnameVerifier){
+	public MHttpConfig hostnameVerifier(HostnameVerifier hostnameVerifier){
 		this.hostnameVerifier = hostnameVerifier;
 		return this;
 	}
 
-	public JDHttpConfig sslSocketFactory(SSLSocketFactory sslSocketFactory){
+	public MHttpConfig sslSocketFactory(SSLSocketFactory sslSocketFactory){
 		this.sslSocketFactory = sslSocketFactory;
 		return this;
 	}
@@ -106,7 +106,7 @@ public class JDHttpConfig {
 	 * @param retryCount
 	 * @return
 	 */
-	public JDHttpConfig retryCount(int retryCount) {
+	public MHttpConfig retryCount(int retryCount) {
 		this.retryCount = retryCount;
 		return this;
 	}
@@ -117,7 +117,7 @@ public class JDHttpConfig {
 	 * @param retryDelayMillis
 	 * @return
 	 */
-	public JDHttpConfig retryDelayMillis(int retryDelayMillis) {
+	public MHttpConfig retryDelayMillis(int retryDelayMillis) {
 		this.retryDelayMillis = retryDelayMillis;
 		return this;
 	}
@@ -128,7 +128,7 @@ public class JDHttpConfig {
 	 * @param timeout
 	 * @return
 	 */
-	public JDHttpConfig connectTimeout(int timeout) {
+	public MHttpConfig connectTimeout(int timeout) {
 		return connectTimeout(timeout, TimeUnit.SECONDS);
 	}
 
@@ -138,7 +138,7 @@ public class JDHttpConfig {
 	 * @param timeout
 	 * @return
 	 */
-	public JDHttpConfig readTimeout(int timeout) {
+	public MHttpConfig readTimeout(int timeout) {
 		return readTimeout(timeout, TimeUnit.SECONDS);
 	}
 
@@ -148,7 +148,7 @@ public class JDHttpConfig {
 	 * @param timeout
 	 * @return
 	 */
-	public JDHttpConfig writeTimeout(int timeout) {
+	public MHttpConfig writeTimeout(int timeout) {
 		return writeTimeout(timeout, TimeUnit.SECONDS);
 	}
 
@@ -159,11 +159,11 @@ public class JDHttpConfig {
 	 * @param unit
 	 * @return
 	 */
-	public JDHttpConfig connectTimeout(int timeout, TimeUnit unit) {
+	public MHttpConfig connectTimeout(int timeout, TimeUnit unit) {
 		if (timeout > -1) {
-			JDHttp.getOkHttpBuilder().connectTimeout(timeout, unit);
+			MHttp.getOkHttpBuilder().connectTimeout(timeout, unit);
 		} else {
-			JDHttp.getOkHttpBuilder().connectTimeout(30, TimeUnit.SECONDS);
+			MHttp.getOkHttpBuilder().connectTimeout(30, TimeUnit.SECONDS);
 		}
 		return this;
 	}
@@ -175,11 +175,11 @@ public class JDHttpConfig {
 	 * @param unit
 	 * @return
 	 */
-	public JDHttpConfig writeTimeout(int timeout, TimeUnit unit) {
+	public MHttpConfig writeTimeout(int timeout, TimeUnit unit) {
 		if (timeout > -1) {
-			JDHttp.getOkHttpBuilder().writeTimeout(timeout, unit);
+			MHttp.getOkHttpBuilder().writeTimeout(timeout, unit);
 		} else {
-			JDHttp.getOkHttpBuilder().writeTimeout(30, TimeUnit.SECONDS);
+			MHttp.getOkHttpBuilder().writeTimeout(30, TimeUnit.SECONDS);
 		}
 		return this;
 	}
@@ -191,11 +191,11 @@ public class JDHttpConfig {
 	 * @param unit
 	 * @return
 	 */
-	public JDHttpConfig readTimeout(int timeout, TimeUnit unit) {
+	public MHttpConfig readTimeout(int timeout, TimeUnit unit) {
 		if (timeout > -1) {
-			JDHttp.getOkHttpBuilder().readTimeout(timeout, unit);
+			MHttp.getOkHttpBuilder().readTimeout(timeout, unit);
 		} else {
-			JDHttp.getOkHttpBuilder().readTimeout(30, TimeUnit.SECONDS);
+			MHttp.getOkHttpBuilder().readTimeout(30, TimeUnit.SECONDS);
 		}
 		return this;
 	}

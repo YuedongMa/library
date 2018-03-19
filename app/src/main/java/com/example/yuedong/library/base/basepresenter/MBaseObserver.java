@@ -1,8 +1,7 @@
 package com.example.yuedong.library.base.basepresenter;
 
 
-import com.example.yuedong.library.MainApplication;
-import com.example.yuedong.library.exception.JDExceptionManager;
+import com.example.yuedong.library.http.exception.MExceptionManager;
 
 import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;
@@ -16,7 +15,7 @@ import io.reactivex.disposables.Disposable;
  * @date 2017/9/6
  */
 
-public abstract class JDBaseObserver<T> implements Observer<BaseResponse<T>>, ISub<T> {
+public abstract class MBaseObserver<T> implements Observer<BaseResponse<T>>, ISub<T> {
 
 	@Override
 	public void onSubscribe(@NonNull Disposable d) {
@@ -35,7 +34,7 @@ if(tBaseResponse.isSuccess()){
 	@Override
 	public void onError(@NonNull Throwable e) {
 		responseError(e.getMessage());
-		JDExceptionManager.handleException(e);
+		MExceptionManager.handleException(e);
 	}
 
 	@Override

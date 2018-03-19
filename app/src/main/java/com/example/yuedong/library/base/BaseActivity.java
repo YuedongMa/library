@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
@@ -35,25 +36,23 @@ public abstract class BaseActivity<T extends BasePresenter> extends SupperActivi
 
     @Override
     public void initSupperData(Bundle bundle) {
-        unbinder = ButterKnife.bind(this);
         initPresenter();
         if (mPresenter != null) {
             mPresenter.attachView(this);
         } else {
             throw new IllegalStateException("Please call mPresenter in AppCompatActivity(initPresenter) to initialize!");
         }
-        initData();
+        initData(bundle);
     }
 
     protected abstract void initPresenter();
 
-    public abstract void initData();
+    public abstract void initData(Bundle bundle);
 
     protected abstract void clearDisposable();
 
     @Override
     public void onActivityDestroy() {
-        if (unbinder != null) unbinder.unbind();
         mPresenter.detachView();
         clearDisposable();
     }

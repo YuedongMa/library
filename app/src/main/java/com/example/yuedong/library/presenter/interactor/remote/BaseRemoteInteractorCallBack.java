@@ -1,11 +1,11 @@
 package com.example.yuedong.library.presenter.interactor.remote;
 
-import com.example.yuedong.library.presenter.interactor.AsyncManagerResult;
+import com.example.yuedong.library.config.RemoteConfig;
 
 /**
  * Created by mayuedong on 2017/3/13.
  */
-public class BaseRemoteInteractorCallBack {
+public class BaseRemoteInteractorCallBack extends RemoteConfig {
 
     public BaseRemoteInteractorCallBack() {
 
@@ -22,43 +22,43 @@ public class BaseRemoteInteractorCallBack {
     private String method;
 
     public void callBackSuccessResult(IPresenterRemoteInteractor.onRemoteEventFinishListener _onResult, Object result) {
-        callBack(_onResult, AsyncManagerResult.createSuccessResult(result, getMethod()));
+        callBack(_onResult, AsyncRemoteManagerResult.createSuccessResult(result, getMethod()));
     }
 
     public void callBackErrorResult(IPresenterRemoteInteractor.onRemoteEventFinishListener _onResult, Object result) {
-        callBack(_onResult, AsyncManagerResult.createErrorResult(result, getMethod()));
+        callBack(_onResult, AsyncRemoteManagerResult.createErrorResult(result, getMethod()));
     }
 
     public void callBackSuccess(IPresenterRemoteInteractor.onRemoteEventFinishListener _onResult) {
-        callBack(_onResult, AsyncManagerResult.createSuccess(getMethod()));
+        callBack(_onResult, AsyncRemoteManagerResult.createSuccess(getMethod()));
     }
 
     public void callBackSuccess(IPresenterRemoteInteractor.onRemoteEventFinishListener _onResult, String msg) {
-        callBack(_onResult, AsyncManagerResult.createSuccess(msg, getMethod()));
+        callBack(_onResult, AsyncRemoteManagerResult.createSuccess(msg, getMethod()));
     }
 
     public void callBackError(IPresenterRemoteInteractor.onRemoteEventFinishListener _onResult, String msg) {
-        callBack(_onResult, AsyncManagerResult.createError(msg, getMethod()));
+        callBack(_onResult, AsyncRemoteManagerResult.createError(msg, getMethod()));
     }
 
     public void callBackError(IPresenterRemoteInteractor.onRemoteEventFinishListener _onResult) {
-        callBack(_onResult, AsyncManagerResult.createError(getMethod()));
+        callBack(_onResult, AsyncRemoteManagerResult.createError(getMethod()));
     }
 
     public void callBackWarning(IPresenterRemoteInteractor.onRemoteEventFinishListener _onResult, String msg) {
-        callBack(_onResult, AsyncManagerResult.createWarning(msg, getMethod()));
+        callBack(_onResult, AsyncRemoteManagerResult.createWarning(msg, getMethod()));
     }
 
     public void callBackWarningResult(IPresenterRemoteInteractor.onRemoteEventFinishListener _onResult, Object result) {
-        callBack(_onResult, AsyncManagerResult.createWarningResult(result, getMethod()));
+        callBack(_onResult, AsyncRemoteManagerResult.createWarningResult(result, getMethod()));
     }
 
     public void callBackWarning(IPresenterRemoteInteractor.onRemoteEventFinishListener _onResult) {
-        callBack(_onResult, AsyncManagerResult.createWarning(getMethod()));
+        callBack(_onResult, AsyncRemoteManagerResult.createWarning(getMethod()));
     }
 
     @Deprecated
-    public void callBack(IPresenterRemoteInteractor.onRemoteEventFinishListener _onResult, AsyncManagerResult _result) {
+    public void callBack(IPresenterRemoteInteractor.onRemoteEventFinishListener _onResult, AsyncRemoteManagerResult _result) {
         if (_onResult != null) {
             _onResult.onInerractorFinish(_result);
         }

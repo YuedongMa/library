@@ -23,6 +23,15 @@ import butterknife.Unbinder;
 public abstract class BaseFragment<T extends BasePresenter> extends SupperFragment {
     protected T mPresenter;
 
+    @Override
+    protected void onLayLoad() {
+
+    }
+
+    @Override
+    protected void onUserVisble() {
+
+    }
 
     @Override
     protected void initSupperData(Bundle savedInstanceState) {

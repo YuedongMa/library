@@ -9,7 +9,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-public class JDTransformer {
+public class MTransformer {
 
     /**
      * 带参数  显示loading对话框

@@ -1,6 +1,6 @@
 package com.example.yuedong.library.presenter.interactor.remote;
 
-import com.example.yuedong.library.presenter.interactor.AsyncManagerResult;
+import android.content.Context;
 
 import io.reactivex.disposables.Disposable;
 
@@ -9,9 +9,12 @@ import io.reactivex.disposables.Disposable;
  */
 
 public interface IPresenterRemoteInteractor {
-    interface onRemoteEventFinishListener{
+    interface onRemoteEventFinishListener {
         void getDisposable(Disposable d);
-        void onInerractorFinish(AsyncManagerResult result );
+
+        void onInerractorFinish(AsyncRemoteManagerResult result);
     }
-    void updVersion(onRemoteEventFinishListener listener);
+
+    void getVersion(onRemoteEventFinishListener listener);
+    void downLoadFile(Context context,String path,onRemoteEventFinishListener listener);
 }

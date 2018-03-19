@@ -1,15 +1,11 @@
-package com.example.yuedong.library.exception;
+package com.example.yuedong.library.http.exception;
 
-/**
- * Created by Administrator on 2017/9/12.
- */
-
-public class JDException {
+public class MException {
 
 	ERROR_INFO error;
 	String errorMsg;
 
-	public JDException(ERROR_INFO code){
+	public MException(ERROR_INFO code){
 		this.error=code;
 	}
 

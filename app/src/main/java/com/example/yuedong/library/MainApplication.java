@@ -4,17 +4,16 @@ import android.app.Application;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.util.Log;
 
 import com.example.yuedong.library.config.ApiConfig;
-import com.example.yuedong.library.config.AppConfig;
-import com.example.yuedong.library.http.JDBaseRequest;
-import com.example.yuedong.library.http.JDHttp;
+import com.example.yuedong.library.http.MBaseRequest;
+import com.example.yuedong.library.http.MHttp;
 import com.example.yuedong.library.http.OriginJsonConverterFactory;
-import com.example.yuedong.library.listener.activitymanager.BDBActivityLifecycleCallbacks;
+import com.example.yuedong.library.listener.activitymanager.MActivityLifecycleCallbacks;
 import com.example.yuedong.library.utils.PaperUtils;
 import com.example.yuedong.library.utils.SSLUtil;
 import com.vondear.rxtools.RxTool;
+import com.vondear.rxtools.SLogTool;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
@@ -37,19 +36,38 @@ public class MainApplication extends Application {
     public void onCreate() {
         super.onCreate();
         mContext = this;
+//        String patchFileString = Environment.getExternalStorageDirectory()
+//                .getAbsolutePath() + File.separator+"classes_dexs.dex";
+//        File desFile = new File(patchFileString);
+//        try {
+//            if (!desFile.exists()) {
+//                desFile.createNewFile();
+//
+//
+//            }
+//            FileUtils.copyFiles(getContext(), "classes.dex", desFile);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+
         Paper.init(this);
-       RxTool.init(this);
-       if(PaperUtils.getCityOptionOne()==null){
-        new Init().execute();
-       }
+        RxTool.init(this);
+        SLogTool.init(this,true,"madong");
+        if (PaperUtils.getCityOptionOne() == null) {
+            new Init().execute();
+        }
 
 
         httpConfig();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            this.registerActivityLifecycleCallbacks(new BDBActivityLifecycleCallbacks());
+
+            this.registerActivityLifecycleCallbacks(new MActivityLifecycleCallbacks());
         }
+
     }
-        private class Init extends AsyncTask<String,Void,Integer>
+
+    private class Init extends AsyncTask<String, Void, Integer>
 
     {
 
@@ -65,12 +83,13 @@ public class MainApplication extends Application {
 
         }
     }
+
     /**
      * 网络请求基础配置
      */
     private void httpConfig() {
-        JDHttp.init(this, true);
-        JDHttp.config()
+        MHttp.init(this, true);
+        MHttp.config()
                 .baseUrl(ApiConfig.BASE_URL)
                 .readTimeout(30)
                 .writeTimeout(30)
@@ -81,7 +100,7 @@ public class MainApplication extends Application {
                 .callAdapterFactory(RxJava2CallAdapterFactory.create())
                 .sslSocketFactory(SSLUtil.createSSLSocketFactory())
                 .hostnameVerifier(new TrustAllHostnameVerifier());
-        JDBaseRequest.generateJDHttpConfig();
+        MBaseRequest.generateJDHttpConfig();
     }
 
     private static class TrustAllHostnameVerifier implements HostnameVerifier {

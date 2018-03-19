@@ -1,4 +1,4 @@
-package com.example.yuedong.library.exception;
+package com.example.yuedong.library.http.exception;
 
 /**
  * 错误信息

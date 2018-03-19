@@ -16,6 +16,10 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by YuedongMa on 2017/3/26.
+ */
+
 public class W_BottomBar extends LinearLayout {
     private static final int TRANSLATE_DURATION_MILLIS = 200;
 
